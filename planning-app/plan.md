@@ -8,7 +8,6 @@ Sprints are on
 Interactive prototype is on
 [marvelapp.com](https://marvelapp.com/prototype/b69e7dj/screen/88864350)
 
-## Backend
+## Component Tree
 
-And I'd love someone to check my readme in the backend project
-[be-nc-news](https://github.com/petrovainbritain22/be-nc-news)
+![CT](/planning-app/images/component-tree.png)
