@@ -3,16 +3,15 @@ import {getArticleArr} from "../utils/api";
 import {ArticleCard} from "./ArticleCard";
 
 export default function ArticleList({sortBy, order, topic}) {
+  const topicIcons = {
+    coding: "https://cdn-icons-png.flaticon.com/512/3655/3655567.png",
+    cooking: "https://www.freeiconspng.com/uploads/cooking-chief-icon-30.png",
+    football:
+      "https://pngimg.com/uploads/football_player/small/football_player_PNG129.png",
+  };
+
   const [isLoading, setIsLoading] = useState(false);
   const [articleArr, setArticleArr] = useState([]);
-  const topicIcons = [
-    {coding: "https://cdn-icons-png.flaticon.com/512/3655/3655567.png"},
-    {cooking: "https://www.freeiconspng.com/uploads/cooking-chief-icon-30.png"},
-    {
-      football:
-        "https://pngimg.com/uploads/football_player/small/football_player_PNG129.png",
-    },
-  ];
 
   useEffect(() => {
     setIsLoading(true);
@@ -33,7 +32,7 @@ export default function ArticleList({sortBy, order, topic}) {
             <ArticleCard
               key={article.article_id}
               article={article}
-              topicIcons={topicIcons}
+              topicIconSrc={topicIcons[article.topic]}
             />
           );
         })}
