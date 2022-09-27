@@ -1,28 +1,21 @@
 // import logo from "./logo.svg";
 import "./App.css";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
-import {useEffect, useState} from "react";
+
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ArticleList from "./components/ArticleList";
+import TopicList from "./components/TopicList";
 
 function App() {
-  const [topic, setTopic] = useState(undefined);
-  const [sortBy, setSortBy] = useState("created_at");
-  const [order, setOrder] = useState("DESC");
-
   return (
     <BrowserRouter>
       <div className="App">
         <Header />
-
+        <TopicList />
         <Routes>
-          <Route
-            path="/"
-            element={
-              <ArticleList sortBy={sortBy} order={order} topic={topic} />
-            }
-          />
+          <Route path="/" element={<ArticleList />} />
+          <Route path="/api/articles" element={<ArticleList />} />
         </Routes>
         <Footer />
       </div>

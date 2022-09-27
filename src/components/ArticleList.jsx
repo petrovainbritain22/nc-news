@@ -1,18 +1,25 @@
+import {useLocation} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {getArticleArr} from "../utils/api";
 import {ArticleCard} from "./ArticleCard";
 
-export default function ArticleList({sortBy, order, topic}) {
+export default function ArticleList({sortBy, order}) {
+  let slug = undefined;
   const [isLoading, setIsLoading] = useState(false);
   const [articleArr, setArticleArr] = useState([]);
+  const {search} = useLocation();
+
+  if (search.includes("topic")) {
+    slug = search.split("=")[1];
+  }
 
   useEffect(() => {
     setIsLoading(true);
-    getArticleArr().then(({articles}) => {
+    getArticleArr(slug).then(({articles}) => {
       setArticleArr(articles);
       setIsLoading(false);
     });
-  }, [topic]);
+  }, [slug]);
 
   if (isLoading) return <p>Articles are loading...</p>;
   return (
