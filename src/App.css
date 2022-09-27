@@ -25,7 +25,11 @@
   font-size: calc(10px + 2vmin);
   color: rgb(10, 10, 10);
 }
-
+.li_ArticleCard img,
+.li_ArticleCard h3,
+.li_ArticleCard p {
+  display: inline-block;
+}
 .App-link {
   color: #61dafb;
 }

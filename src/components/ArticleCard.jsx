@@ -1,14 +1,20 @@
 export const ArticleCard = ({article}) => {
+  const topicIcons = {
+    coding: "https://cdn-icons-png.flaticon.com/512/3655/3655567.png",
+    cooking: "https://www.freeiconspng.com/uploads/cooking-chief-icon-30.png",
+    football:
+      "https://pngimg.com/uploads/football_player/small/football_player_PNG129.png",
+  };
+  console.log(topicIcons["cooking"]);
+  // console.log(article.topic);
   return (
-    <li>
-      {/* How to make a link on the folder with images?
-        <figure>
-        <img src="images/topics/transp-icons/coding.png" alt="Icon coding" />
-        <figcaption></figcaption>
-      </figure> */}
+    <li className="li_ArticleCard">
+      <img src={`${topicIcons[article.topic]}`} width="50px"></img>
       <h3>{article.title}</h3>
-      <p>{article.votes} votes</p>
-      <p>{article.comment_count} comments</p>
+      <div>
+        <p>{article.votes} votes</p>
+        <p>{article.comment_count} comments</p>
+      </div>
     </li>
   );
 };
