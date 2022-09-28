@@ -10,4 +10,4 @@ Interactive prototype is on
 
 ## Component Tree
 
-It is new CT: ![CT](/planning-app/images/component-tree.png)
+![CT](/planning-app/images/newCT.png)
