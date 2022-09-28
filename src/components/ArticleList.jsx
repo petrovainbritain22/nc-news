@@ -1,17 +1,12 @@
-import {useLocation} from "react-router-dom";
 import {useEffect, useState} from "react";
+import {useParams} from "react-router-dom";
 import {getArticleArr} from "../utils/api";
 import {ArticleCard} from "./ArticleCard";
 
-export default function ArticleList({sortBy, order}) {
-  let slug = undefined;
+export default function ArticleList() {
   const [isLoading, setIsLoading] = useState(false);
   const [articleArr, setArticleArr] = useState([]);
-  const {search} = useLocation();
-
-  if (search.includes("topic")) {
-    slug = search.split("=")[1];
-  }
+  const {slug} = useParams();
 
   useEffect(() => {
     setIsLoading(true);
@@ -27,7 +22,11 @@ export default function ArticleList({sortBy, order}) {
       <h2>Our Latest News</h2>
       <ul>
         {articleArr.map((article) => {
-          return <ArticleCard key={article.article_id} article={article} />;
+          return (
+            <li key={article.article_id} className="li_ArticleCard">
+              <ArticleCard article={article} />;
+            </li>
+          );
         })}
       </ul>
     </section>

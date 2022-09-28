@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import {getTopicArr} from "../utils/api";
+
 export default function TopicList() {
   const [topicArr, setTopicArr] = useState([]);
   useEffect(() => {
@@ -12,7 +13,7 @@ export default function TopicList() {
   return (
     <nav>
       {topicArr.map((topic) => {
-        const url = `/api/articles/?topic=${topic.slug}`;
+        const url = "/topics/" + topic.slug;
         return (
           <Link key={topic.slug} to={url}>
             {topic.slug}

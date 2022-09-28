@@ -4,19 +4,21 @@ import {BrowserRouter, Routes, Route} from "react-router-dom";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import ArticleList from "./components/ArticleList";
-import TopicList from "./components/TopicList";
+import Main from "./components/Main";
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
         <Header />
-        <TopicList />
-        <Routes>
-          <Route path="/" element={<ArticleList />} />
-          <Route path="/api/articles" element={<ArticleList />} />
-        </Routes>
+        <main>
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="/articles" element={<Main />} />
+            <Route path="/topics" element={<Main />} />
+            <Route path="/topics/:slug" element={<Main />} />
+          </Routes>
+        </main>
         <Footer />
       </div>
     </BrowserRouter>
