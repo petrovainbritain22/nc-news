@@ -6,7 +6,7 @@ import VoteCard from "./VoteCard";
 export default function SingleArticle() {
   const {article_id} = useParams();
   const [isLoading, setIsLoading] = useState(false);
-  const [article, setArticle] = useState([]);
+  const [article, setArticle] = useState({});
 
   useEffect(() => {
     setIsLoading(true);
