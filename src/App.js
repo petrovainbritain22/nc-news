@@ -4,7 +4,8 @@ import {BrowserRouter, Routes, Route} from "react-router-dom";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import Main from "./components/Main";
+import SingleArticle from "./components/SingleArticle";
+import ArticleList from "./components/ArticleList";
 
 function App() {
   return (
@@ -13,9 +14,10 @@ function App() {
         <Header />
         <main>
           <Routes>
-            <Route path="/" element={<Main />} />
-            <Route path="/articles" element={<Main />} />
-            <Route path="/topics/:slug" element={<Main />} />
+            <Route path="/" element={<ArticleList />} />
+            <Route path="/articles" element={<ArticleList />} />
+            <Route path="/articles/:article_id" element={<SingleArticle />} />
+            <Route path="/topics/:slug" element={<ArticleList />} />
           </Routes>
         </main>
         <Footer />
