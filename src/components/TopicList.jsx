@@ -1,18 +1,18 @@
 import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
-import {getTopicArr} from "../utils/api";
+import {getTopicsArr} from "../utils/api";
 
 export default function TopicList() {
-  const [topicArr, setTopicArr] = useState([]);
+  const [topicsArr, setTopicsArr] = useState([]);
   useEffect(() => {
-    getTopicArr().then(({topics}) => {
-      setTopicArr(topics);
+    getTopicsArr().then(({topics}) => {
+      setTopicsArr(topics);
     });
   }, []);
 
   return (
     <nav>
-      {topicArr.map((topic) => {
+      {topicsArr.map((topic) => {
         const url = "/topics/" + topic.slug;
         return (
           <Link key={topic.slug} to={url}>
