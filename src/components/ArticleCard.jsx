@@ -6,7 +6,7 @@ export const ArticleCard = ({article}) => {
     football:
       "https://pngimg.com/uploads/football_player/small/football_player_PNG129.png",
   };
-  const url = "/api/articles/" + article.article_id;
+  const url = "/articles/" + article.article_id;
   return (
     <Link to={url}>
       <img src={topicIcons[article.topic]} width="50px"></img>

@@ -6,8 +6,8 @@ Sprints are on
 ## Protorype
 
 Interactive prototype is on
-[marvelapp.com](https://marvelapp.com/prototype/b69e7dj/screen/88864350)
+[marvelapp.com](https://marvelapp.com/prototype/b69e7dj/screen/88847864)
 
 ## Component Tree
 
-![CT](/planning-app/images/component-tree.png)
+It is new CT: ![CT](/planning-app/images/component-tree.png)
