@@ -1,17 +1,19 @@
-import {useEffect, useState} from "react";
-import {patchArticleVotes} from "../utils/api";
+import {useState} from "react";
+import {patchArticleVotes, patchCommentVotes} from "../utils/api";
 
-export default function VoteCard({votes, article_id}) {
-  const [newVotes, setNewVotes] = useState(votes);
+export default function VoteCard(props) {
+  const [newVotes, setNewVotes] = useState(props.votes);
 
   const [errMsg, setErrMsg] = useState(undefined);
   const voteUpHandler = (e) => {
-    updateArticleVote({inc_votes: 1});
+    updateVote({inc_votes: 1});
   };
   const voteDownHandler = (e) => {
-    updateArticleVote({inc_votes: -1});
+    updateVote({inc_votes: -1});
   };
-  const updateArticleVote = (vote) => {
+
+  const updateVote = (vote) => {
+
     setErrMsg(undefined);
     const isNumber = typeof vote.inc_votes === "number";
     if (isNumber) {
@@ -19,15 +21,24 @@ export default function VoteCard({votes, article_id}) {
         return currVotes + vote.inc_votes;
       });
     }
-    patchArticleVotes(article_id, vote).catch((err) => {
-      const isNumber = typeof vote.inc_votes === "number";
-      if (isNumber) {
-        setNewVotes((currVotes) => {
-          return currVotes - vote.inc_votes;
-        });
-      }
-      setErrMsg(err.response.data.msg);
-    });
+
+    let votePromise;
+    if (props.article_id) {
+      votePromise = patchArticleVotes(props.article_id, vote);
+    } else if (props.comment_id) {
+    }
+    if (votePromise) {
+      votePromise.then().catch((err) => {
+        const isNumber = typeof vote.inc_votes === "number";
+        if (isNumber) {
+          setNewVotes((currVotes) => {
+            return currVotes - vote.inc_votes;
+          });
+        }
+        setErrMsg(err.response.data.msg);
+      });
+    }
+
   };
 
   return (

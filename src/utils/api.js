@@ -6,6 +6,11 @@ const ncNewsApi = axios.create({
 export const getTopicsArr = () => {
   return ncNewsApi.get("/topics").then((res) => res.data);
 };
+export const getCommentsArr = (article_id) => {
+  return ncNewsApi
+    .get(`/articles/${article_id}/comments`)
+    .then((res) => res.data);
+};
 export const getArticlesArr = (slug) => {
   return ncNewsApi
     .get("/articles", {
@@ -21,5 +26,10 @@ export const getArticleById = (article_id) => {
 export const patchArticleVotes = (article_id, vote) => {
   return ncNewsApi
     .patch(`/articles/${article_id}`, vote)
+    .then((res) => res.data);
+};
+export const patchCommentVotes = (comment_id, vote) => {
+  return ncNewsApi
+    .patch(`/comments/${comment_id}`, vote)
     .then((res) => res.data);
 };
