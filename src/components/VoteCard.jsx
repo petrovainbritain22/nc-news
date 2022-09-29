@@ -21,7 +21,6 @@ export default function VoteCard(props) {
     }
     let votePromise;
     if (props.article_id) {
-      console.log(props.article_id, "art");
       votePromise = patchArticleVotes(props.article_id, vote);
     } else if (props.comment_id) {
     }
