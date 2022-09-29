@@ -1,6 +1,8 @@
 import {useEffect, useState} from "react";
 import {useParams, Link} from "react-router-dom";
+import {HashLink} from "react-router-hash-link";
 import {getArticleById} from "../utils/api";
+import {toDateStr} from "../utils/toDateStr";
 import VoteCard from "./VoteCard";
 
 export default function SingleArticle() {
@@ -17,26 +19,21 @@ export default function SingleArticle() {
   }, [article_id]);
 
   if (isLoading) return <p>Article is loading...</p>;
-  let dateStr = "";
-  if (article.created_at) {
-    const date = new Date(Date.parse(article.created_at));
-    const options = {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    };
-    dateStr = "On " + date.toLocaleDateString(undefined, options);
-  }
+  const dateStr = toDateStr(article.created_at);
 
   return (
     <section>
       <article>
-        <p>Posted by {article.author}</p>
-        <p>{dateStr}</p>
-        <h2>{article.title}</h2>
+        <h2>
+          Posted by {article.author}
+          {dateStr}
+        </h2>
+        <h3>{article.title}</h3>
         <VoteCard votes={article.votes} article_id={article_id} />
-        <p>{article.comment_count} comments</p>
+        <HashLink smooth to={`/articles/${article_id}/comments#list-comments`}>
+          {article.comment_count} comments
+        </HashLink>
+
         <p>{article.body}</p>
       </article>
       <form>
@@ -45,9 +42,9 @@ export default function SingleArticle() {
         <button>Cancel</button>
         <button>Comment</button>
       </form>
-      <Link to="">
+      <HashLink smooth to={`/articles/${article_id}/comments#list-comments`}>
         <p>Read comments</p>
-      </Link>
+      </HashLink>
     </section>
   );
 }

@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import SingleArticle from "./components/SingleArticle";
 import ArticleList from "./components/ArticleList";
+import CommentList from "./components/CommentList";
 
 function App() {
   return (
@@ -15,9 +16,13 @@ function App() {
         <main>
           <Routes>
             <Route path="/" element={<ArticleList />} />
+            <Route path="/topics/:slug" element={<ArticleList />} />
             <Route path="/articles" element={<ArticleList />} />
             <Route path="/articles/:article_id" element={<SingleArticle />} />
-            <Route path="/topics/:slug" element={<ArticleList />} />
+            <Route
+              path="/articles/:article_id/comments"
+              element={<CommentList />}
+            />
           </Routes>
         </main>
         <Footer />
