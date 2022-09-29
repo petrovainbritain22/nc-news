@@ -11,7 +11,9 @@ export default function VoteCard(props) {
   const voteDownHandler = (e) => {
     updateVote({inc_votes: -1});
   };
+
   const updateVote = (vote) => {
+
     setErrMsg(undefined);
     const isNumber = typeof vote.inc_votes === "number";
     if (isNumber) {
@@ -19,6 +21,7 @@ export default function VoteCard(props) {
         return currVotes + vote.inc_votes;
       });
     }
+
     let votePromise;
     if (props.article_id) {
       votePromise = patchArticleVotes(props.article_id, vote);
@@ -35,6 +38,7 @@ export default function VoteCard(props) {
         setErrMsg(err.response.data.msg);
       });
     }
+
   };
 
   return (
