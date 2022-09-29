@@ -9,7 +9,7 @@ export default function VoteCard({votes, article_id}) {
     updateArticleVote({inc_votes: 1});
   };
   const voteDownHandler = (e) => {
-    updateArticleVote({inc_votes: "-1"});
+    updateArticleVote({inc_votes: -1});
   };
   const updateArticleVote = (vote) => {
     setErrMsg(undefined);
