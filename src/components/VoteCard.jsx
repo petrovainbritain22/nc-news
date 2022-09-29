@@ -12,19 +12,19 @@ export default function VoteCard({votes, article_id}) {
     updateArticleVote({inc_votes: -1});
   };
   const updateArticleVote = (vote) => {
+    setErrMsg(undefined);
+    setNewVotes((currVotes) => {
+      return currVotes + vote.inc_votes;
+    });
     patchArticleVotes(article_id, vote)
-      .then(({article}) => {
-        setNewVotes((currVotes) => {
-          return currVotes + vote.inc_votes;
-        });
-      })
+      .then(({article}) => {})
       .catch((err) => {
+        setNewVotes((currVotes) => {
+          return currVotes - vote.inc_votes;
+        });
         setErrMsg(err.response.data.msg);
       });
   };
-  useEffect(() => {
-    setErrMsg(undefined);
-  }, [newVotes]);
 
   return (
     <p>
