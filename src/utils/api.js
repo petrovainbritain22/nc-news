@@ -33,3 +33,9 @@ export const patchCommentVotes = (comment_id, vote) => {
     .patch(`/comments/${comment_id}`, vote)
     .then((res) => res.data);
 };
+
+export const postComment = (article_id, comment) => {
+  return ncNewsApi
+    .post(`articles/${article_id}/comments`, comment)
+    .then((res) => res.data);
+};
