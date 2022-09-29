@@ -18,3 +18,8 @@ export const getArticlesArr = (slug) => {
 export const getArticleById = (article_id) => {
   return ncNewsApi.get(`/articles/${article_id}`).then((res) => res.data);
 };
+export const patchArticleVotes = (article_id, vote) => {
+  return ncNewsApi
+    .patch(`/articles/${article_id}`, vote)
+    .then((res) => res.data);
+};
