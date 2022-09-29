@@ -30,13 +30,13 @@ export default function SingleArticle() {
         </h2>
         <h3>{article.title}</h3>
         <VoteCard votes={article.votes} article_id={article_id} />
-        <HashLink smooth to={`/articles/${article_id}/comments#input-comments`}>
+        <HashLink smooth to={`/articles/${article_id}/comments#form-comments`}>
           {article.comment_count} comments
         </HashLink>
 
         <p>{article.body}</p>
       </article>
-      <HashLink smooth to={`/articles/${article_id}/comments#input-comments`}>
+      <HashLink smooth to={`/articles/${article_id}/comments#form-comments`}>
         <p>Read comments</p>
       </HashLink>
     </section>
