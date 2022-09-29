@@ -23,7 +23,7 @@ export default function VoteCard({votes, article_id}) {
       const isNumber = typeof vote.inc_votes === "number";
       if (isNumber) {
         setNewVotes((currVotes) => {
-          return currVotes + vote.inc_votes;
+          return currVotes - vote.inc_votes;
         });
       }
       setErrMsg(err.response.data.msg);
