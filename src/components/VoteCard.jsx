@@ -9,21 +9,25 @@ export default function VoteCard({votes, article_id}) {
     updateArticleVote({inc_votes: 1});
   };
   const voteDownHandler = (e) => {
-    updateArticleVote({inc_votes: -1});
+    updateArticleVote({inc_votes: "-1"});
   };
   const updateArticleVote = (vote) => {
     setErrMsg(undefined);
-    setNewVotes((currVotes) => {
-      return currVotes + vote.inc_votes;
-    });
-    patchArticleVotes(article_id, vote)
-      .then(({article}) => {})
-      .catch((err) => {
-        setNewVotes((currVotes) => {
-          return currVotes - vote.inc_votes;
-        });
-        setErrMsg(err.response.data.msg);
+    const isNumber = typeof vote.inc_votes === "number";
+    if (isNumber) {
+      setNewVotes((currVotes) => {
+        return currVotes + vote.inc_votes;
       });
+    }
+    patchArticleVotes(article_id, vote).catch((err) => {
+      const isNumber = typeof vote.inc_votes === "number";
+      if (isNumber) {
+        setNewVotes((currVotes) => {
+          return currVotes + vote.inc_votes;
+        });
+      }
+      setErrMsg(err.response.data.msg);
+    });
   };
 
   return (
