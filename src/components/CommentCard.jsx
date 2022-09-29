@@ -1,5 +1,6 @@
 import {toDateStr} from "../utils/toDateStr";
 import SingleArticle from "./SingleArticle";
+import VoteCard from "./VoteCard";
 
 export default function CommentCard({comment}) {
   const dateStr = toDateStr(comment.created_at);
@@ -8,11 +9,7 @@ export default function CommentCard({comment}) {
       <p>{comment.body}</p>
       <p>{dateStr}</p>
 
-      <p>
-        <button>Up</button>
-        {comment.votes} votes
-        <button>Down</button>
-      </p>
+      <VoteCard votes={comment.votes} comment_id={comment.comment_id} />
     </section>
   );
 }

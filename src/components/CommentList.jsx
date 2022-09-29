@@ -13,7 +13,10 @@ export default function CommentList() {
   useEffect(() => {
     setIsLoading(true);
     getCommentsArr(article_id).then(({comments}) => {
-      setCommentsArr(comments);
+      const sortedComments = comments.sort((c1, c2) => {
+        if (c1.created_at > c2.created_at) return -1;
+      });
+      setCommentsArr(sortedComments);
       setIsLoading(false);
     });
   }, [article_id]);
@@ -22,7 +25,13 @@ export default function CommentList() {
   return (
     <section>
       <SingleArticle />
-      <ul id="list-comments">
+      <form id="input-comments">
+        <label htmlFor="">Comment</label>
+        <input id="input_comment" placeholder="Your comment is here"></input>
+        <button>Cancel</button>
+        <button>Comment</button>
+      </form>
+      <ul>
         {commentsArr.map((comment) => {
           return (
             <li key={comment.comment_id}>

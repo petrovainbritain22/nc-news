@@ -28,3 +28,8 @@ export const patchArticleVotes = (article_id, vote) => {
     .patch(`/articles/${article_id}`, vote)
     .then((res) => res.data);
 };
+export const patchCommentVotes = (comment_id, vote) => {
+  return ncNewsApi
+    .patch(`/comments/${comment_id}`, vote)
+    .then((res) => res.data);
+};
