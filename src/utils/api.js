@@ -11,11 +11,13 @@ export const getCommentsArr = (article_id) => {
     .get(`/articles/${article_id}/comments`)
     .then((res) => res.data);
 };
-export const getArticlesArr = (slug) => {
+export const getArticlesArr = (slug, sortBy, order) => {
   return ncNewsApi
     .get("/articles", {
       params: {
         topic: slug,
+        sort_by: sortBy,
+        order: order,
       },
     })
     .then((res) => res.data);

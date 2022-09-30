@@ -35,8 +35,8 @@ export default function CommentAdder({article_id, setCommentsArr}) {
       });
   };
   return (
-    <form id="form-comments">
-      <label htmlFor="">Comment</label>
+    <form id="form_comments">
+      <label htmlFor="input_comment">Comment</label>
       <input
         id="input_comment"
         placeholder="Your comment is here"
