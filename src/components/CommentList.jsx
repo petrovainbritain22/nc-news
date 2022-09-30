@@ -21,7 +21,7 @@ export default function CommentList() {
       setCommentsArr(sortedComments);
       setIsLoading(false);
     });
-  }, [article_id]);
+  }, []);
 
   if (isLoading) return <p>Comments are loading...</p>;
   return (
@@ -32,7 +32,11 @@ export default function CommentList() {
         {commentsArr.map((comment) => {
           return (
             <li key={comment.comment_id}>
-              <CommentCard comment={comment} />
+              <CommentCard
+                comment={comment}
+                commentsArr={commentsArr}
+                setCommentsArr={setCommentsArr}
+              />
             </li>
           );
         })}
