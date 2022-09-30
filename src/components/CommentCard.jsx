@@ -1,15 +1,25 @@
+import {useState} from "react";
 import {toDateStr} from "../utils/toDateStr";
-import SingleArticle from "./SingleArticle";
 import VoteCard from "./VoteCard";
-
-export default function CommentCard({comment}) {
-  const dateStr = toDateStr(comment.created_at);
+import CommentRemover from "./CommentRemover";
+export default function CommentCard(props) {
+  const [errMsg, setErrMsg] = useState(undefined);
+  const dateStr = toDateStr(props.comment.created_at);
   return (
     <section>
-      <p>{comment.body}</p>
+      <p>{props.comment.body}</p>
+      <CommentRemover
+        comment={props.comment}
+        commentsArr={props.commentsArr}
+        setCommentsArr={props.setCommentsArr}
+        setErrMsg={setErrMsg}
+        errMsg={errMsg}
+      />
       <p>{dateStr}</p>
-
-      <VoteCard votes={comment.votes} comment_id={comment.comment_id} />
+      <VoteCard
+        votes={props.comment.votes}
+        comment_id={props.comment.comment_id}
+      />
     </section>
   );
 }

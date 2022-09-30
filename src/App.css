@@ -30,6 +30,11 @@
 .li_ArticleCard p {
   display: inline-block;
 }
+.img_like,
+.img_dislike,
+.img_delete {
+  width: 20px;
+}
 .App-link {
   color: #61dafb;
 }

@@ -1,4 +1,4 @@
-import {useContext, useEffect, useState} from "react";
+import {useContext, useState} from "react";
 import {UserContext} from "../contexts/User";
 import {postComment} from "../utils/api";
 
@@ -12,8 +12,6 @@ export default function CommentAdder({article_id, setCommentsArr}) {
   };
 
   const commentAdderHandler = (e) => {
-    setNewComment("");
-    setErrMsg(undefined);
     e.preventDefault();
     const comment = {
       username: user.username,
@@ -22,10 +20,14 @@ export default function CommentAdder({article_id, setCommentsArr}) {
       created_at: new Date().toJSON(),
       comment_id: Date.now(),
     };
+    setNewComment("");
+    setErrMsg(undefined);
+    if (comment.body.trim() === "") return;
     setCommentsArr((currComments) => {
       return [comment, ...currComments];
     });
     postComment(article_id, comment)
+      // postComment("ten", comment)
       .then()
       .catch((err) => {
         setErrMsg(err.response.data.msg);
@@ -47,6 +49,7 @@ export default function CommentAdder({article_id, setCommentsArr}) {
       ></input>
       <button onClick={cancelHandler}>Cancel</button>
       <button onClick={commentAdderHandler}>Comment</button>
+      <span>{errMsg ? errMsg : null}</span>
     </form>
   );
 }

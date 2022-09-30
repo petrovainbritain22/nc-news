@@ -41,3 +41,7 @@ export const postComment = (article_id, comment) => {
     .post(`articles/${article_id}/comments`, comment)
     .then((res) => res.data);
 };
+
+export const deleteCommentById = (comment_id) => {
+  return ncNewsApi.delete(`/comments/${comment_id}`).then((res) => res);
+};
