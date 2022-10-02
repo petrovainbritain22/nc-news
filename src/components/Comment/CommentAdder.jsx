@@ -1,20 +1,14 @@
 import {useContext, useEffect, useState} from "react";
 import {UserContext} from "../../contexts/User";
 import {postComment} from "../../utils/api";
-
 import {ErrContext} from "../../contexts/Error";
+
 export default function CommentAdder({article_id, setCommentsArr}) {
-  console.log("3 in Addre");
+  const [commentBody, setCommentBody] = useState("");
   const {user} = useContext(UserContext);
   const {setErr} = useContext(ErrContext);
-  const [commentBody, setCommentBody] = useState("");
-  const cancelHandler = (e) => {
-    e.preventDefault();
-    setCommentBody("");
-  };
 
   const commentAdderHandler = (e) => {
-    console.log("in adder hanlder");
     e.preventDefault();
     const newComment = {
       username: user.username,
@@ -22,26 +16,20 @@ export default function CommentAdder({article_id, setCommentsArr}) {
       comment_id: Date.now(),
       isNew: true,
     };
-
-    if (commentBody.trim() === "") {
-      setCommentBody("");
+    setCommentBody("");
+    if (newComment.body.trim() === "") {
       return;
     }
-    setCommentBody("");
-    console.log("change list");
     setCommentsArr((currComments) => {
       return [newComment, ...currComments];
     });
     postComment(article_id, newComment)
-      // postComment("ten", newComment)
       .then(({comment}) => {
-        console.log("in post.then");
         setErr(() => {
           return {msg: null};
         });
       })
       .catch((err) => {
-        console.log("adder err block");
         setErr(() => {
           return {msg: err.response.data.msg};
         });
@@ -53,17 +41,16 @@ export default function CommentAdder({article_id, setCommentsArr}) {
   };
   return (
     <form id="form_comments" onSubmit={commentAdderHandler}>
-      <label htmlFor="input_comment">Comment</label>
-      <input
-        id="input_comment"
+      <label htmlFor="input_comment"></label>
+      <textarea
+        id="textarea_comment"
         placeholder="Your comment is here"
         name="commentBody"
         value={commentBody}
         onChange={(e) => {
           setCommentBody(e.target.value);
         }}
-      ></input>
-      <button onClick={cancelHandler}>Cancel</button>
+      ></textarea>
       <button type="submit">Comment</button>
     </form>
   );

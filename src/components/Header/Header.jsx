@@ -1,16 +1,22 @@
+import {useContext, useState} from "react";
 import {Link} from "react-router-dom";
-import TopicList from "./TopicList";
+import {UserContext} from "../../contexts/User";
+import MenuCard from "./MenuCard";
+
 export default function Header() {
-  const title = "NC News";
+  const {user} = useContext(UserContext);
   return (
     <header className="App-header">
-      {/* here will be a component insted of <p> */}
-      <p>Profile</p>
+      <figure className="header_figure_user">
+        <img src={user.avatar_url} />
+        <figcaption>Hi, {user.name}</figcaption>
+      </figure>
       <Link to="/">
-        <h1>{title}</h1>
+        <h1 id="h_siteTitle">
+          N<span>C</span>EWS
+        </h1>
       </Link>
-
-      <TopicList />
+      <MenuCard />
     </header>
   );
 }

@@ -1,3 +1,15 @@
+.btn_menu {
+  width: 2em;
+  height: 2em;
+  fill: #2a4e70;
+}
+.btn_menu:hover {
+  fill: #4aa6fe;
+}
+.btn-icon {
+  width: 1rem;
+  height: 1rem;
+}
 .App {
   text-align: center;
 }
