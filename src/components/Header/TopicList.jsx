@@ -1,9 +1,10 @@
 import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
-import {getTopicsArr} from "../utils/api";
+import {getTopicsArr} from "../../utils/api";
 
 export default function TopicList() {
   const [topicsArr, setTopicsArr] = useState([]);
+
   useEffect(() => {
     getTopicsArr().then(({topics}) => {
       setTopicsArr(topics);

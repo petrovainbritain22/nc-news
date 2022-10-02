@@ -5,13 +5,15 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import {UserProvider} from "./contexts/User";
-
+import {ErrProvider} from "./contexts/Error";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <UserProvider>
-      <App />
-    </UserProvider>
+    <ErrProvider>
+      <UserProvider>
+        <App />
+      </UserProvider>
+    </ErrProvider>
   </React.StrictMode>
 );
 
