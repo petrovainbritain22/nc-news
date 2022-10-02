@@ -3,7 +3,7 @@ export default function SortBy({sort_by, setSort_by}) {
     setSort_by(e.target.value);
   }
   return (
-    <label htmlFor="sort_by">
+    <label id="label_sort" htmlFor="sort_by">
       Sort by
       <select
         id="sort_by"

@@ -16,7 +16,6 @@ export default function CommentList() {
   const {article_id} = useParams();
 
   useEffect(() => {
-    console.log("comment list is useEffect");
     setIsLoading(true);
     getCommentsArr(article_id)
       .then(({comments}) => {

@@ -40,15 +40,17 @@ export default function ArticleList() {
   return (
     <LoadingCard isLoading={isLoading}>
       <ErrorCard />
-      <form>
+      <form id="form_sort_order">
         <SortBy sort_by={sort_by} setSort_by={setSort_by} />
         <Order order={order} setOrder={setOrder} />
       </form>
-      <h2>Our Latest News</h2>
-      <ul>
+      <h2 id="h_articles">
+        North<span className="c">C</span>oder's Latest News
+      </h2>
+      <ul id="list_articles">
         {articlesArr.map((article) => {
           return (
-            <li key={article.article_id} className="li_ArticleCard">
+            <li key={article.article_id}>
               <ArticleCard article={article} />;
             </li>
           );
