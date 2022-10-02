@@ -1,8 +1,10 @@
 import {useEffect, useState} from "react";
 import {useParams, useSearchParams} from "react-router-dom";
-import {getArticlesArr} from "../utils/api";
-import {ArticleCard} from "./ArticleCard";
-import SortBy from "./SortBy";
+
+import {ArticleCard} from "../Article/ArticleCard";
+import SortBy from "../Article/SortBy";
+
+import {getArticlesArr} from "../../utils/api";
 
 export default function ArticleList() {
   const [isLoading, setIsLoading] = useState(false);

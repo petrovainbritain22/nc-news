@@ -1,8 +1,8 @@
 import {useContext, useEffect, useState} from "react";
-import {UserContext} from "../contexts/User";
-import {postComment} from "../utils/api";
+import {UserContext} from "../../contexts/User";
+import {postComment} from "../../utils/api";
 
-import {ErrContext} from "../contexts/Error";
+import {ErrContext} from "../../contexts/Error";
 export default function CommentAdder({article_id, setCommentsArr}) {
   console.log("3 in Addre");
   const {user} = useContext(UserContext);

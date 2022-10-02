@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {patchArticleVotes} from "../utils/api";
+import {patchArticleVotes} from "../../utils/api";
 
 export default function VoteCard(props) {
   const urlIconThumbDown =

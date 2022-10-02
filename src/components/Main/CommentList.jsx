@@ -1,11 +1,11 @@
 import {useContext, useEffect, useState} from "react";
 
 import {useParams} from "react-router-dom";
-import {getCommentsArr} from "../utils/api";
-import CommentAdder from "./CommentAdder";
-import {ErrContext} from "../contexts/Error";
-import CommentCard from "./CommentCard";
-import ErrorCard from "./ErrorCard";
+import {getCommentsArr} from "../../utils/api";
+import CommentAdder from "../Comment/CommentAdder";
+import {ErrContext} from "../../contexts/Error";
+import CommentCard from "../Comment/CommentCard";
+import ErrorCard from "../ErrorCard";
 
 import SingleArticle from "./SingleArticle";
 
@@ -31,7 +31,7 @@ export default function CommentList() {
 
   if (isLoading) return <p>Comments are loading...</p>;
   return (
-    <main>
+    <section>
       <SingleArticle />
       <CommentAdder article_id={article_id} setCommentsArr={setCommentsArr} />
       <ErrorCard />
@@ -47,6 +47,6 @@ export default function CommentList() {
           );
         })}
       </ul>
-    </main>
+    </section>
   );
 }

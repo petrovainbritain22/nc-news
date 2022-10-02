@@ -1,6 +1,6 @@
 import {useState} from "react";
-import {toDateStr} from "../utils/toDateStr";
-import VoteCard from "./VoteCard";
+import {toDateStr} from "../../utils/toDateStr";
+
 import CommentRemover from "./CommentRemover";
 
 export default function CommentCard({comment, setCommentsArr}) {

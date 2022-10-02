@@ -1,7 +1,7 @@
-import {deleteCommentById} from "../utils/api";
+import {deleteCommentById} from "../../utils/api";
 import {useContext, useEffect, useState} from "react";
-import {ErrContext} from "../contexts/Error";
-import ErrorCard from "./ErrorCard";
+import {ErrContext} from "../../contexts/Error";
+import ErrorCard from "../ErrorCard";
 export default function CommentRemover({comment, setCommentsArr}) {
   console.log("in commentRemover");
   const urlIconBin = "https://cdn-icons-png.flaticon.com/512/206/206529.png";

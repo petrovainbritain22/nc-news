@@ -1,9 +1,9 @@
 import {useEffect, useState} from "react";
 import {useParams, Link} from "react-router-dom";
 import {HashLink} from "react-router-hash-link";
-import {getArticleById} from "../utils/api";
-import {toDateStr} from "../utils/toDateStr";
-import VoteCard from "./VoteCard";
+import {getArticleById} from "../../utils/api";
+import {toDateStr} from "../../utils/toDateStr";
+import VoteCard from "../Article/VoteCard";
 
 export default function SingleArticle() {
   const {article_id} = useParams();
