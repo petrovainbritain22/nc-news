@@ -1,13 +1,17 @@
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
+
 import {useParams} from "react-router-dom";
 import {getCommentsArr} from "../utils/api";
 import CommentAdder from "./CommentAdder";
+import {ErrContext} from "../contexts/Error";
 import CommentCard from "./CommentCard";
+import ErrorCard from "./ErrorCard";
 
 import SingleArticle from "./SingleArticle";
 
 export default function CommentList() {
   console.log("1 COMMENT LIST START");
+  const {setErr} = useContext(ErrContext);
   const {article_id} = useParams();
   const [isLoading, setIsLoading] = useState(false);
   const [commentsArr, setCommentsArr] = useState([]);
@@ -30,6 +34,7 @@ export default function CommentList() {
     <main>
       <SingleArticle />
       <CommentAdder article_id={article_id} setCommentsArr={setCommentsArr} />
+      <ErrorCard />
       <ul>
         {commentsArr.map((comment) => {
           return (

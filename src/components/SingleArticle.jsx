@@ -6,7 +6,6 @@ import {toDateStr} from "../utils/toDateStr";
 import VoteCard from "./VoteCard";
 
 export default function SingleArticle() {
-  console.log("2 SingleArticle");
   const {article_id} = useParams();
   const [isLoading, setIsLoading] = useState(false);
   const [article, setArticle] = useState({});

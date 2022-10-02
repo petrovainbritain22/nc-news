@@ -1,12 +1,12 @@
 import {useContext, useEffect, useState} from "react";
 import {UserContext} from "../contexts/User";
 import {postComment} from "../utils/api";
-import ErrorCard from "./ErrorCard";
 
+import {ErrContext} from "../contexts/Error";
 export default function CommentAdder({article_id, setCommentsArr}) {
   console.log("3 in Addre");
   const {user} = useContext(UserContext);
-  const [errMsg, setErrMsg] = useState(undefined);
+  const {setErr} = useContext(ErrContext);
   const [commentBody, setCommentBody] = useState("");
   const cancelHandler = (e) => {
     e.preventDefault();
@@ -36,11 +36,15 @@ export default function CommentAdder({article_id, setCommentsArr}) {
       // postComment("ten", newComment)
       .then(({comment}) => {
         console.log("in post.then");
-        setErrMsg(undefined);
+        setErr(() => {
+          return {msg: null};
+        });
       })
       .catch((err) => {
         console.log("adder err block");
-        setErrMsg(err.response.data.msg);
+        setErr(() => {
+          return {msg: err.response.data.msg};
+        });
         setCommentsArr((currComments) => {
           console.log("delete added comment");
           return currComments.slice(1);
@@ -49,7 +53,6 @@ export default function CommentAdder({article_id, setCommentsArr}) {
   };
   return (
     <form id="form_comments" onSubmit={commentAdderHandler}>
-      <ErrorCard errMsg={errMsg} />
       <label htmlFor="input_comment">Comment</label>
       <input
         id="input_comment"
