@@ -4,6 +4,7 @@ import VoteCard from "./VoteCard";
 import CommentRemover from "./CommentRemover";
 
 export default function CommentCard({comment, setCommentsArr}) {
+  console.log("li, c ", comment);
   return (
     <li key={`li_${comment.comment_id}`}>
       <p>{comment.body}</p>

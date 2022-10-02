@@ -1,6 +1,7 @@
 import {useContext, useEffect, useState} from "react";
 import {UserContext} from "../contexts/User";
 import {postComment} from "../utils/api";
+import ErrorCard from "./ErrorCard";
 
 export default function CommentAdder({article_id, setCommentsArr}) {
   console.log("3 in Addre");
@@ -11,9 +12,7 @@ export default function CommentAdder({article_id, setCommentsArr}) {
     e.preventDefault();
     setCommentBody("");
   };
-  useEffect(() => {
-    console.log("errMsg changed ", errMsg);
-  }, [errMsg]);
+
   const commentAdderHandler = (e) => {
     console.log("in adder hanlder");
     e.preventDefault();
@@ -21,9 +20,13 @@ export default function CommentAdder({article_id, setCommentsArr}) {
       username: user.username,
       body: commentBody,
       comment_id: Date.now(),
+      isNew: true,
     };
 
-    if (commentBody.trim() === "") return;
+    if (commentBody.trim() === "") {
+      setCommentBody("");
+      return;
+    }
     setCommentBody("");
     console.log("change list");
     setCommentsArr((currComments) => {
@@ -46,6 +49,7 @@ export default function CommentAdder({article_id, setCommentsArr}) {
   };
   return (
     <form id="form_comments" onSubmit={commentAdderHandler}>
+      <ErrorCard errMsg={errMsg} />
       <label htmlFor="input_comment">Comment</label>
       <input
         id="input_comment"
@@ -58,7 +62,6 @@ export default function CommentAdder({article_id, setCommentsArr}) {
       ></input>
       <button onClick={cancelHandler}>Cancel</button>
       <button type="submit">Comment</button>
-      <span>{errMsg ? errMsg : null}</span>
     </form>
   );
 }
