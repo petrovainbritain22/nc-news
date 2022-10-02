@@ -1,54 +1,63 @@
-import {useContext, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {UserContext} from "../contexts/User";
 import {postComment} from "../utils/api";
 
 export default function CommentAdder({article_id, setCommentsArr}) {
+  console.log("3 in Addre");
   const {user} = useContext(UserContext);
   const [errMsg, setErrMsg] = useState(undefined);
-  const [newComment, setNewComment] = useState("");
+  const [commentBody, setCommentBody] = useState("");
   const cancelHandler = (e) => {
     e.preventDefault();
-    setNewComment("");
+    setCommentBody("");
   };
-
+  useEffect(() => {
+    console.log("errMsg changed ", errMsg);
+  }, [errMsg]);
   const commentAdderHandler = (e) => {
+    console.log("in adder hanlder");
     e.preventDefault();
-    const comment = {
+    const newComment = {
       username: user.username,
-      body: newComment,
-      votes: 0,
-      created_at: new Date().toJSON(),
+      body: commentBody,
       comment_id: Date.now(),
     };
-    setNewComment("");
-    setErrMsg(undefined);
-    if (comment.body.trim() === "") return;
+
+    if (commentBody.trim() === "") return;
+    setCommentBody("");
+    console.log("change list");
     setCommentsArr((currComments) => {
-      return [comment, ...currComments];
+      return [newComment, ...currComments];
     });
-    postComment(article_id, comment)
-      // postComment("ten", comment)
-      .then()
+    postComment(article_id, newComment)
+      // postComment("ten", newComment)
+      .then(({comment}) => {
+        console.log("in post.then");
+        setErrMsg(undefined);
+      })
       .catch((err) => {
+        console.log("adder err block");
         setErrMsg(err.response.data.msg);
         setCommentsArr((currComments) => {
-          return [currComments.slice(1)];
+          console.log("delete added comment");
+          return currComments.slice(1);
         });
       });
   };
   return (
-    <form id="form_comments">
+    <form id="form_comments" onSubmit={commentAdderHandler}>
       <label htmlFor="input_comment">Comment</label>
       <input
         id="input_comment"
         placeholder="Your comment is here"
-        value={newComment}
+        name="commentBody"
+        value={commentBody}
         onChange={(e) => {
-          setNewComment(e.target.value);
+          setCommentBody(e.target.value);
         }}
       ></input>
       <button onClick={cancelHandler}>Cancel</button>
-      <button onClick={commentAdderHandler}>Comment</button>
+      <button type="submit">Comment</button>
       <span>{errMsg ? errMsg : null}</span>
     </form>
   );

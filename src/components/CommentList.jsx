@@ -7,11 +7,13 @@ import CommentCard from "./CommentCard";
 import SingleArticle from "./SingleArticle";
 
 export default function CommentList() {
+  console.log("1 COMMENT LIST START");
   const {article_id} = useParams();
   const [isLoading, setIsLoading] = useState(false);
   const [commentsArr, setCommentsArr] = useState([]);
 
   useEffect(() => {
+    console.log("comment list is useEffect");
     setIsLoading(true);
     getCommentsArr(article_id).then(({comments}) => {
       const sortedComments = comments.sort((c1, c2) => {
@@ -25,22 +27,21 @@ export default function CommentList() {
 
   if (isLoading) return <p>Comments are loading...</p>;
   return (
-    <section>
+    <main>
       <SingleArticle />
       <CommentAdder article_id={article_id} setCommentsArr={setCommentsArr} />
       <ul>
         {commentsArr.map((comment) => {
           return (
-            <li key={comment.comment_id}>
-              <CommentCard
-                comment={comment}
-                commentsArr={commentsArr}
-                setCommentsArr={setCommentsArr}
-              />
-            </li>
+            <CommentCard
+              key={`component_${comment.comment_id}`}
+              comment={comment}
+              // commentsArr={commentsArr}
+              setCommentsArr={setCommentsArr}
+            />
           );
         })}
       </ul>
-    </section>
+    </main>
   );
 }

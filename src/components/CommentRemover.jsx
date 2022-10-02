@@ -5,38 +5,29 @@ export default function CommentRemover(props) {
 
   const deleteCommentHandler = (e) => {
     // e.preventDefault();
-    const index = props.commentsArr.findIndex(
-      (c) => c.comment_id === props.comment.comment_id
-    );
 
     props.setCommentsArr((currCommentsArr) => {
       return [
-        ...currCommentsArr.slice(0, index),
-        ...currCommentsArr.slice(index + 1),
+        currCommentsArr.filter((c) => {
+          return c.comment_id !== props.comment.comment_id;
+        }),
       ];
     });
-
+    if (props.comment.isNew) return;
     // deleteCommentById(props.comment.comment_id + 10000000)
-    deleteCommentById(props.comment.comment_id)
-      .then()
-      .catch((err) => {
-        props.setCommentsArr((currCommentsArr) => {
-          return [
-            ...currCommentsArr.slice(0, index),
-            props.comment,
-            ...currCommentsArr.slice(index),
-          ];
-        });
-        props.setErrMsg(err.response.data.msg);
-        console.log(props.errMsg);
+    deleteCommentById(props.comment.comment_id).catch((err) => {
+      props.setCommentsArr((currCommentsArr) => {
+        return [props.comment, ...currCommentsArr];
       });
+      console.log(props.comment.isNew);
+      props.setErrMsg(err.response.data.msg);
+    });
   };
   return (
     <span>
       <button onClick={deleteCommentHandler}>
         <img className="img_delete" src={urlIconBin} alt="icon rubbish bin" />
       </button>
-      <span>{props.errMsg ? props.errMsg : null}</span>
     </span>
   );
 }

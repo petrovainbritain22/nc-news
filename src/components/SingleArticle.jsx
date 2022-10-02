@@ -6,6 +6,7 @@ import {toDateStr} from "../utils/toDateStr";
 import VoteCard from "./VoteCard";
 
 export default function SingleArticle() {
+  console.log("2 SingleArticle");
   const {article_id} = useParams();
   const [isLoading, setIsLoading] = useState(false);
   const [article, setArticle] = useState({});
@@ -22,23 +23,17 @@ export default function SingleArticle() {
   const dateStr = toDateStr(article.created_at);
 
   return (
-    <section>
-      <article>
-        <h2>
-          Posted by {article.author}
-          {dateStr}
-        </h2>
-        <h3>{article.title}</h3>
-        <VoteCard votes={article.votes} article_id={article_id} />
-        <HashLink smooth to={`/articles/${article_id}/comments#form_comments`}>
-          {article.comment_count} comments
-        </HashLink>
-
-        <p>{article.body}</p>
-      </article>
+    <article>
+      <h2>
+        Posted by {article.author}
+        {dateStr}
+      </h2>
+      <h3>{article.title}</h3>
+      <VoteCard votes={article.votes} article_id={article_id} />
       <HashLink smooth to={`/articles/${article_id}/comments#form_comments`}>
-        <p>Read comments</p>
+        {article.comment_count} comments
       </HashLink>
-    </section>
+      <p>{article.body}</p>
+    </article>
   );
 }
