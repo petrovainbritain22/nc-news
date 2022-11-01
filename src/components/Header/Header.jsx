@@ -10,7 +10,7 @@ export default function Header() {
     <header>
       <div id="header">
         <figure className="figure_user">
-          <img src={user.avatar_url} alt="User avatar" width="20rem" />
+          <img src={user.avatar_url} alt="User avatar" />
           <figcaption>Hi {user.name.match(/\w*/)}</figcaption>
         </figure>
 

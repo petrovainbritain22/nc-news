@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import ArticleList from "./components/Main/ArticleList";
 import SingleArticle from "./components/Main/SingleArticle";
 import CommentList from "./components/Main/CommentList";
+import UserList from "./components/Main/UserList";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
               path="/articles/:article_id/comments"
               element={<CommentList />}
             />
+            <Route path="/users" element={<UserList />} />
           </Routes>
         </main>
         <Footer />

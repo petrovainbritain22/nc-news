@@ -22,6 +22,9 @@ export const getArticlesArr = (slug, sortBy, order) => {
     })
     .then((res) => res.data);
 };
+export const getUsersArr = () => {
+  return ncNewsApi.get("/users").then((res) => res.data);
+};
 export const getArticleById = (article_id) => {
   return ncNewsApi.get(`/articles/${article_id}`).then((res) => res.data);
 };

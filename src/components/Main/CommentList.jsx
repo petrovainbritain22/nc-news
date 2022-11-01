@@ -1,7 +1,6 @@
 import {useContext, useEffect, useState} from "react";
 import {ErrContext} from "../../contexts/Error";
 import {useParams} from "react-router-dom";
-import ErrorCard from "../ErrorCard";
 import LoadingCard from "../LoadingCard";
 import SingleArticle from "./SingleArticle";
 import CommentAdder from "../Comment/CommentAdder";

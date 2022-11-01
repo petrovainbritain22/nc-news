@@ -13,17 +13,26 @@ export default function TopicList() {
 
   return (
     <nav className="nav-container">
-      {topicsArr.map((topic) => {
-        return (
-          <Link
-            className="nav-item"
-            key={topic.slug}
-            to={"/topics/" + topic.slug}
-          >
-            {topic.slug[0].toUpperCase() + topic.slug.slice(1)}
-          </Link>
-        );
-      })}
+      <ul className="ul_topics">
+        {topicsArr.map((topic) => {
+          return (
+            <Link
+              className="nav-item"
+              key={topic.slug}
+              to={"/topics/" + topic.slug}
+            >
+              {topic.slug[0].toUpperCase() + topic.slug.slice(1)}
+            </Link>
+          );
+        })}
+      </ul>
+      <Link
+        style={{color: "red", fontWeight: "400"}}
+        className="nav-item"
+        to={"/users"}
+      >
+        Users
+      </Link>
     </nav>
   );
 }
