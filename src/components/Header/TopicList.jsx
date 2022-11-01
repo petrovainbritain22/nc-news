@@ -14,6 +14,9 @@ export default function TopicList() {
   return (
     <nav className="nav-container">
       <ul className="ul_topics">
+        <Link className="nav-item" key="all_topics" to={"/"}>
+          <strong>All topics</strong>
+        </Link>
         {topicsArr.map((topic) => {
           return (
             <Link
