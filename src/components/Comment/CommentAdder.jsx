@@ -3,7 +3,11 @@ import {UserContext} from "../../contexts/User";
 import {postComment} from "../../utils/api";
 import {ErrContext} from "../../contexts/Error";
 
-export default function CommentAdder({article_id, setCommentsArr}) {
+export default function CommentAdder({
+  article_id,
+  setCommentsArr,
+  setIsNewAdded,
+}) {
   const [commentBody, setCommentBody] = useState("");
   const {user} = useContext(UserContext);
   const {setErr} = useContext(ErrContext);
@@ -25,6 +29,7 @@ export default function CommentAdder({article_id, setCommentsArr}) {
     });
     postComment(article_id, newComment)
       .then(({comment}) => {
+        setIsNewAdded(true);
         setErr(() => {
           return {msg: null};
         });
@@ -41,7 +46,7 @@ export default function CommentAdder({article_id, setCommentsArr}) {
   };
   return (
     <form id="form_comments" onSubmit={commentAdderHandler}>
-      <label htmlFor="input_comment"></label>
+      <label htmlFor="input_comments"></label>
       <textarea
         id="textarea_comment"
         placeholder="Your comment is here"

@@ -3,10 +3,10 @@ export default function SortBy({sort_by, setSort_by}) {
     setSort_by(e.target.value);
   }
   return (
-    <label id="label_sort" htmlFor="sort_by">
+    <label id="label_sort" htmlFor="select_sort">
       Sort by
       <select
-        id="sort_by"
+        id="select_sort"
         name="sort_by"
         value={sort_by}
         onChange={sortHandler}

@@ -37,7 +37,7 @@ export default function ArticleVotes(props) {
   };
 
   return (
-    <figure>
+    <figure className="figure-votes">
       <img onClick={voteUpHandler} src={thumbUp} alt="Thumb icon" />
       <figcaption>{newVotes} votes</figcaption>
       <img

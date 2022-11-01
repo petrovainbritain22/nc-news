@@ -45,13 +45,23 @@ export default function ArticleList() {
         <Order order={order} setOrder={setOrder} />
       </form>
       <h2 id="h_articles">
-        North<span className="c">C</span>oder's Latest News
+        North
+        <span
+          style={{
+            color: "red",
+            fontFamily: "Euphoria Script",
+            fontSize: "2em",
+          }}
+        >
+          C
+        </span>
+        oder's News
       </h2>
-      <ul id="list_articles">
+      <ul>
         {articlesArr.map((article) => {
           return (
             <li key={article.article_id}>
-              <ArticleCard article={article} />;
+              <ArticleCard article={article} />
             </li>
           );
         })}

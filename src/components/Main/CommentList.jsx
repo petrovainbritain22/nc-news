@@ -11,11 +11,13 @@ import {getCommentsArr} from "../../utils/api";
 export default function CommentList() {
   const [commentsArr, setCommentsArr] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isNewAdded, setIsNewAdded] = useState(false);
 
   const {setErr} = useContext(ErrContext);
   const {article_id} = useParams();
 
   useEffect(() => {
+    setIsNewAdded(false);
     setIsLoading(true);
     getCommentsArr(article_id)
       .then(({comments}) => {
@@ -35,13 +37,17 @@ export default function CommentList() {
           return {msg: err.response.data.msg};
         });
       });
-  }, []);
+  }, [isNewAdded]);
 
   return (
     <LoadingCard isLoading={isLoading}>
       <SingleArticle />
-      <CommentAdder article_id={article_id} setCommentsArr={setCommentsArr} />
-      <ul>
+      <CommentAdder
+        article_id={article_id}
+        setCommentsArr={setCommentsArr}
+        setIsNewAdded={setIsNewAdded}
+      />
+      <ul className="ul_comments">
         {commentsArr.map((comment) => {
           return (
             <CommentCard

@@ -7,18 +7,33 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const {user} = useContext(UserContext);
   return (
-    <header className="App-header">
-      <div>
-        <figure>
-          <img id="img_profile-main" src={user.avatar_url} />
-          <figcaption>Hi, {user.name}</figcaption>
+    <header>
+      <div id="header">
+        <figure className="figure_user">
+          <img src={user.avatar_url} alt="User avatar" width="20rem" />
+          <figcaption>Hi {user.name.match(/\w*/)}</figcaption>
         </figure>
+
         <Link to="/">
-          <h1 id="h_siteTitle">
-            N<span className="c">C</span>EWS
+          <h1 id="h-title">
+            N
+            <span
+              style={{
+                color: "red",
+                fontFamily: "Euphoria Script",
+                fontSize: "2em",
+              }}
+            >
+              C
+            </span>
+            EWS
           </h1>
         </Link>
-        <MenuCard isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
+        <MenuCard
+          isMenuOpen={isMenuOpen}
+          setIsMenuOpen={setIsMenuOpen}
+          className="col-nav"
+        />
       </div>
       {isMenuOpen ? <TopicList /> : null}
     </header>
