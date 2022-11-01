@@ -4,9 +4,8 @@ import CommentRemover from "./CommentRemover";
 import {useContext} from "react";
 
 export default function CommentCard({comment, setCommentsArr}) {
-  console.log(comment.author);
   const {user} = useContext(UserContext);
-  console.log(user.username === comment.author);
+
   return (
     <li key={`li_${comment.comment_id}`} className="li_comment">
       <p>{comment.body}</p>

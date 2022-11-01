@@ -35,7 +35,9 @@ export default function SingleArticle() {
       <article>
         <h2>{article.title}</h2>
         <div className="row grey">
-          <span className="col">Posted by {article.author}</span>{" "}
+          <span className="col">
+            Posted by <strong>{article.author}</strong>
+          </span>{" "}
           <span className="col">{toDateStr(article.created_at)}</span>
         </div>
         <div className="article-votes-comments">
