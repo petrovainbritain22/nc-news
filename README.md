@@ -4,10 +4,12 @@ Northcoders News is a social news aggregation, web content rating, and
 discussion website.
 
 Northcoders News has articles which are divided into topics. You can filter
-articles by topic. Each article has user curated ratings and can be up or down
-voted using the API. Users can also add comments about an article and delete
-their own comments. You can sort articles by votes, comments etc. in descending
-or ascending order.
+articles by topic.
+
+Each article has user curated ratings and can be up or down voted using the API.
+
+Users can also add comments about an article and delete their own comments. You
+can sort articles by votes, comments etc. in descending or ascending order.
 
 Also you can change a user.
 

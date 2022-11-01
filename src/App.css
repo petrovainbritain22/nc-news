@@ -209,3 +209,6 @@ h2 {
   background-color: rgb(209, 238, 248);
   justify-content: space-evenly;
 }
+#footer p {
+  text-align: center;
+}
