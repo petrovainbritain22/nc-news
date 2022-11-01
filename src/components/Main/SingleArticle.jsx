@@ -33,16 +33,23 @@ export default function SingleArticle() {
   return (
     <LoadingCard isLoading={isLoading}>
       <article>
-        <h2>
-          Posted by {article.author}
-          {toDateStr(article.created_at)}
-        </h2>
-        <h3>{article.title}</h3>
-        <ArticleVote votes={article.votes} />
-        <HashLink smooth to={`/articles/${article_id}/comments#form_comments`}>
-          {article.comment_count} comments
-        </HashLink>
-        <p>{article.body}</p>
+        <h2>{article.title}</h2>
+        <div className="row grey">
+          <span className="col">
+            Posted by <strong>{article.author}</strong>
+          </span>{" "}
+          <span className="col">{toDateStr(article.created_at)}</span>
+        </div>
+        <div className="article-votes-comments">
+          <ArticleVote votes={article.votes} />
+          <HashLink
+            smooth
+            to={`/articles/${article_id}/comments#form_comments`}
+          >
+            {article.comment_count} comments
+          </HashLink>
+        </div>
+        <p className="article-body">{article.body}</p>
         <ErrorCard />
       </article>
     </LoadingCard>

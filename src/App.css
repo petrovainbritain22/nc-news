@@ -1,61 +1,193 @@
-.btn_menu {
-  width: 2em;
-  height: 2em;
-  fill: #2a4e70;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-.btn_menu:hover {
-  fill: #4aa6fe;
-}
-.btn-icon {
-  width: 1rem;
-  height: 1rem;
+
+@import url("https://fonts.googleapis.com/css2?family=Euphoria+Script&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+html,
+body {
+  font-family: "Roboto", sans-serif;
+  max-width: 100vw;
+  background-image: url("https://cdn.wallpapersafari.com/42/5/QNjYHR.jpg");
+  /* border: 0.1px solid rgb(238, 238, 238); */
 }
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header,
-.App-footer {
-  background-color: #dedfe2;
-  border: 1px solid rgb(180, 179, 179);
-  min-height: fit-content;
+  height: 100vh;
+  /* border: 10px solid red; */
   display: flex;
   flex-direction: column;
+  /* justify-content: space-around; */
+  align-items: stretch;
+  /* min-height: 100%; */
+}
+a {
+  color: rgb(15, 107, 150);
+  text-decoration: none;
+}
+a:hover {
+  color: rgb(39, 65, 77);
+}
+#header {
+  padding: 5px 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: rgb(10, 10, 10);
-}
-.li_ArticleCard img,
-.li_ArticleCard h3,
-.li_ArticleCard p {
-  display: inline-block;
-}
-.img_like,
-.img_dislike,
-.img_delete {
-  width: 20px;
-}
-.App-link {
-  color: #61dafb;
+  background-color: rgb(255, 255, 255, 0.95);
+  border-bottom: 2px solid rgb(39, 65, 77);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.figure_user {
+  text-align: center;
+}
+.nav-container,
+#form_sort_order {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  border-bottom: 1px solid rgb(39, 65, 77);
+  background-color: rgb(180, 234, 255);
+}
+.nav-item {
+  padding: 0.5em 1em;
+  align-items: center;
+}
+.nav-item:hover,
+button:hover {
+  background-color: rgb(157, 223, 249);
+}
+#form_sort_order {
+  padding: 0 5px;
+  justify-content: flex-end;
+}
+
+#select_sort,
+#select_order {
+  margin: 5px 15px 5px 5px;
+  padding: 1px;
+  border: 1px solid rgb(210, 206, 206);
+}
+
+#h_articles {
+  text-align: center;
+  color: white;
+  background-color: rgba(46, 45, 45, 0.8);
+  font-weight: bold;
+  padding: 3em 0 2em 0;
+}
+.link_article {
+  background-color: rgb(255, 255, 255, 0.95);
+  display: flex;
+  margin: 2em 15%;
+  padding: 1em;
+  border: 5px solid rgb(224, 224, 224);
+  border-radius: 10%;
+  align-items: center;
+  justify-content: flex-start;
+}
+.img_topic {
+  padding-right: 10%;
+  width: 25%;
+}
+.div_articleData {
+  width: 65%;
+}
+
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+[class*="col"] {
+  float: left;
+  padding: 0.5em 0 0 10%;
+  width: 50%;
+}
+.col {
+  color: rgb(39, 65, 77);
+}
+.col-votes img,
+.col-votes caption,
+.col-comments img,
+.col-comments caption {
+  float: left;
+  padding-right: 0.5em;
+}
+
+article,
+.ul_comments,
+#form_comments {
+  background-color: rgb(255, 255, 255, 0.95);
+  width: 90%;
+  margin: 2em auto;
+  padding: 2em;
+  border: 5px solid rgb(224, 224, 224);
+  border-radius: 10%;
+}
+#form_comments {
+  padding: 1em 3em;
+  text-align: center;
+}
+button {
+  margin-top: 1em;
+  padding: 0.5em;
+  border: 1px solid rgb(15, 107, 150);
+  background-color: rgb(221, 231, 234);
+}
+
+#form_comments textarea {
+  width: 100%;
+  padding: 0.5em;
+}
+ul {
+  list-style-type: none;
+}
+.article-body {
+  padding: 1em 0;
+}
+h2 {
+  text-align: center;
+}
+.article-votes-comments {
+  padding: 3em 0 0 0;
+  display: flex;
+  justify-content: space-between;
+}
+.figure-votes {
+  display: flex;
+}
+.figure-votes figcaption {
+  padding: 0 0.5em;
+}
+.li_comment {
+  padding: 1.5em 0 0 0;
+}
+.grey {
+  color: rgb(39, 65, 77);
+}
+.flex-between {
+  padding: 0.5em 0 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.italic {
+  font-style: italic;
+}
+#footer {
+  margin-top: auto;
+  border-top: 2px solid rgb(39, 65, 77);
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  background-color: rgb(209, 238, 248);
+  justify-content: space-evenly;
 }

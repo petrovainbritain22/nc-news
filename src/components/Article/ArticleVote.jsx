@@ -2,7 +2,6 @@ import {useContext, useState} from "react";
 import {ErrContext} from "../../contexts/Error";
 import {patchArticleVotes} from "../../utils/api";
 
-import ErrorCard from "../ErrorCard";
 import thumbUp from "../../svg/thumbUp.svg";
 import thumbDown from "../../svg/thumbDown.svg";
 import {useParams} from "react-router-dom";
@@ -38,7 +37,7 @@ export default function ArticleVotes(props) {
   };
 
   return (
-    <figure>
+    <figure className="figure-votes">
       <img onClick={voteUpHandler} src={thumbUp} alt="Thumb icon" />
       <figcaption>{newVotes} votes</figcaption>
       <img

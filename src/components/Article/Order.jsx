@@ -3,8 +3,14 @@ export default function Order({order, setOrder}) {
     setOrder(e.target.value);
   }
   return (
-    <label htmlFor="order">
-      <select id="order" name="order" value={order} onChange={orderHandler}>
+    <label htmlFor="select_order">
+      Order
+      <select
+        id="select_order"
+        name="order"
+        value={order}
+        onChange={orderHandler}
+      >
         <option value="asc">Ascending</option>
         <option value="desc">Descending</option>
       </select>

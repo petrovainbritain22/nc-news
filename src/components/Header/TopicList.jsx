@@ -12,12 +12,15 @@ export default function TopicList() {
   }, []);
 
   return (
-    <nav>
+    <nav className="nav-container">
       {topicsArr.map((topic) => {
-        const url = "/topics/" + topic.slug;
         return (
-          <Link key={topic.slug} to={url}>
-            {topic.slug}
+          <Link
+            className="nav-item"
+            key={topic.slug}
+            to={"/topics/" + topic.slug}
+          >
+            {topic.slug[0].toUpperCase() + topic.slug.slice(1)}
           </Link>
         );
       })}
